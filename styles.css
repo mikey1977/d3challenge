@@ -1,0 +1,7 @@
+#container {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-width: 700px;
+  height: 500px;
+}
