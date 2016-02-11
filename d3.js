@@ -38,4 +38,14 @@ $(document).ready(function() {
     }
 });
 
-var map = new Datamap({element: document.getElementById('container')});
+var map = new Datamap({
+  scope: 'world',
+  element: document.getElementById('container'),
+  projection: 'mercator',
+  fills: {
+    defaultFill: "#16677f"
+
+  },
+});
+
+// var menu = d3.select('#container').append('select').attr('name', 'country-list');
