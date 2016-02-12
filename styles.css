@@ -3,10 +3,11 @@
   position: relative;
   width: 100%;
   min-width: 600px;
-  height: 500px;
+  height: 600px;
 }
 
 .dropDownMenu {
   display: inline-block;
-  width: 20%;
+  width: 30%;
+  margin: 1%;
 }
