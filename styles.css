@@ -1,13 +1,14 @@
-#container {
+#bar-chart {
   display: block;
   position: relative;
   width: 100%;
   min-width: 600px;
   height: 600px;
+  margin-left: 50px;
 }
 
 .dropDownMenu {
   display: inline-block;
-  width: 30%;
+  width: 20%;
   margin: 1%;
 }

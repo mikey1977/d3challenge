@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-  document.getElementById('txtFileUpload').addEventListener('change', upload, false);
+  document.getElementById('selectFile').addEventListener('change', upload, false);
 
   function upload(evt) {
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
       var age = [];
       var country = [];
       var gender = [];
-      var metric = [];
+      var mean = [];
       var complete = [];
 
 
@@ -42,8 +42,8 @@ $(document).ready(function() {
       for (var j = 0; j < result.length; j++) {
         if (result[j].length == 16) {
 
-          // if (result[j][3] == 1997){
-          if (result[j][2] == 'Albania') {
+          if (result[j][3] == 1997){
+          // if (result[j][2] == 'Albania') {
             if (result[j][5] == '25 to 29 yrs') {
               if (result[j][9] == 'male') {
                 if (result[j][11] == 'obese') {
@@ -56,7 +56,7 @@ $(document).ready(function() {
                   age.push(result[j][5]);
                   country.push(result[j][2]);
                   gender.push(result[j][9]);
-                  metric.push(result[j][13]);
+                  mean.push(result[j][13]);
                   complete.push(result[j][3]);
                   complete.push(result[j][5]);
                   complete.push(result[j][2]);
@@ -72,11 +72,39 @@ $(document).ready(function() {
       }
       console.log(age);
       console.log(year);
-      console.log(metric);
+      console.log(mean);
       console.log(country);
       console.log(complete);
 
+      var height = 500,
+          width = 715,
+          barWidth = 25,
+          barOffset = 5;
 
+      var yScale = d3.scale.linear()
+              .domain([0.0, 0.25])
+              .range([0, height]);
+
+
+
+      d3.select('#bar-chart').append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .style('background', 'blue')
+        .selectAll('rect').data(mean)
+        .enter().append('rect')
+          .style({'fill': 'yellow', 'stroke': 'gold', 'stroke-width': '1'})
+          .attr('width', barWidth)
+          .attr('height', function (data) {
+              return yScale(data);
+          })
+          .attr('x', function (data, i) {
+              return i * (barWidth + barOffset);
+          })
+          .attr('y', function (data) {
+              return height - yScale(data);
+
+          });
       //iterate through array to pare down by country
 
       //refine by age
@@ -88,6 +116,8 @@ $(document).ready(function() {
       //obtain year and percentage as final array or csv format
 
       //graph by year (x-axis) and percentage (y-axis)
+
+      //or figure out a way to plot one array on y, and another on x
 
     };
   }
